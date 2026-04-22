@@ -1,0 +1,6 @@
+@SmartHire_AI___Backend_HostAddress = http://localhost:5214
+
+GET {{SmartHire_AI___Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
