@@ -1,0 +1,35 @@
+<div class="upload-page">
+  <h1>Upload Resume</h1>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Candidate Name</mat-label>
+          <input matInput formControlName="candidateName" placeholder="John Doe">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="candidateEmail" placeholder="john@example.com">
+        </mat-form-field>
+        <div class="file-input">
+          <input type="file" #fileInput (change)="onFileSelected($event)" accept=".pdf,.docx,.doc,.txt" hidden>
+          <button mat-stroked-button type="button" (click)="fileInput.click()">
+            {{ file ? file.name : 'Choose PDF/DOCX file' }}
+          </button>
+        </div>
+        <div *ngIf="error" class="error">{{ error }}</div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading || !file">
+          {{ loading ? 'Uploading...' : 'Upload' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="uploadedResponse" class="preview-card">
+    <mat-card-header>
+      <mat-card-title>Extracted Text Preview - {{ uploadedResponse.fileName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <pre class="extracted-text">{{ uploadedResponse.extractedText || 'No text extracted.' }}</pre>
+    </mat-card-content>
+  </mat-card>
+</div>

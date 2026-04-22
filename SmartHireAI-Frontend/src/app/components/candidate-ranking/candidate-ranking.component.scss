@@ -1,0 +1,32 @@
+.ranking-page {
+  padding: 24px;
+  h1 { margin-bottom: 24px; }
+  .chart-card { margin: 24px 0; max-width: 700px; }
+  .score-bars { margin-top: 16px; }
+  .score-row {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .name { min-width: 150px; }
+    .bar-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 24px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      .bar { height: 100%; border-radius: 0; min-width: 4px; transition: width 0.3s; }
+      .value { margin-left: 8px; font-weight: 600; }
+    }
+  }
+  .table-card { margin-top: 24px; }
+  .score {
+    padding: 4px 12px;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+  }
+  table { width: 100%; }
+}

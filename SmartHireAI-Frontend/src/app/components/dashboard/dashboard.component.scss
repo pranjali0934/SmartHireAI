@@ -1,0 +1,24 @@
+.dashboard {
+  padding: 24px;
+  h1 { margin-bottom: 24px; }
+  .loading { padding: 24px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    .stat-value { font-size: 2rem; font-weight: 600; }
+  }
+  .top-candidates { margin-top: 24px; }
+  .score-badge {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-weight: 600;
+    &.high { background: #c8e6c9; color: #2e7d32; }
+    &.medium { background: #fff9c4; color: #f57f17; }
+    &.low { background: #ffcdd2; color: #c62828; }
+  }
+  table { width: 100%; }
+}

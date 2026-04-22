@@ -1,0 +1,60 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="!loading && stats">
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-card-title>Total Resumes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span class="stat-value">{{ stats.totalResumes }}</span>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-card-title>Total Jobs</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span class="stat-value">{{ stats.totalJobs }}</span>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-card-title>Total Candidates</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span class="stat-value">{{ stats.totalCandidates }}</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-card class="top-candidates">
+      <mat-card-header>
+        <mat-card-title>Top Candidates</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="stats.topCandidates.length === 0">No candidates analyzed yet. Upload resumes and run analysis.</div>
+        <table mat-table [dataSource]="stats.topCandidates" *ngIf="stats.topCandidates.length > 0" class="mat-elevation-z0">
+          <ng-container matColumnDef="candidateName">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let row">{{ row.candidateName }}</td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          </ng-container>
+          <ng-container matColumnDef="matchScore">
+            <th mat-header-cell *matHeaderCellDef>Match Score</th>
+            <td mat-cell *matCellDef="let row">
+              <span class="score-badge" [class.high]="row.matchScore >= 70" [class.medium]="row.matchScore >= 40 && row.matchScore < 70" [class.low]="row.matchScore < 40">
+                {{ row.matchScore }}%
+              </span>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['candidateName', 'email', 'matchScore']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['candidateName', 'email', 'matchScore'];"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
